@@ -5,7 +5,7 @@ class BookItem extends Component {
     static defaultProps = {
       books: []
     }
-  
+
     render() {
     const { books, shelf } = this.props
     if (shelf) {
@@ -23,7 +23,8 @@ class BookItem extends Component {
               backgroundImage: `url(${book.imageLinks.smallThumbnail})`
             }}></div>
             <ShelfPicker
-            onUpdateShelf={this.updateShelf} />
+            onUpdateShelf={this.updateShelf}
+            bookID={book.id} />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors}</div>
