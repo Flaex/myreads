@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import ShelfPicker from './ShelfPicker'
 
 class BookItem extends Component {
-      static defaultProps = {
+    static defaultProps = {
       books: []
     }
+  
     render() {
-    const { books } = this.props
+    const { books, shelf } = this.props
+    if (shelf) {
+      books.map(book =>  book.shelf = shelf)
+    }
+    console.log(books)
     return(
-
       <ol className="books-grid">
       {books.map((book) => (
         <li key={book.id}>
@@ -18,7 +22,8 @@ class BookItem extends Component {
               width: 128, height: 193,
               backgroundImage: `url(${book.imageLinks.smallThumbnail})`
             }}></div>
-            <ShelfPicker />
+            <ShelfPicker
+            onUpdateShelf={this.updateShelf} />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors}</div>

@@ -42,7 +42,9 @@ class SearchBooks extends Component {
         </div>
       </div>
         <div className="search-books-results">
-          <BookItem books={books}
+          <BookItem
+            books={books}
+            shelf="none"
            />
         </div>
       </div>
