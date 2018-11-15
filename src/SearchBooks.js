@@ -20,6 +20,7 @@ class SearchBooks extends Component {
       })
     } else {
       query= ''
+      this.setState({books: []})
     }
   }
 
