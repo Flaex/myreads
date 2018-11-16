@@ -9,6 +9,10 @@ class SearchBooks extends Component {
     books: []
   }
 
+  clearResults = () => {
+    this.setState({ query: '' })
+  }
+
   updateQuery = (query) => {
      if (query) {
       BooksAPI.search(query).then(books => {
@@ -16,10 +20,12 @@ class SearchBooks extends Component {
           this.setState({books})
         } else {
           console.log('no books')
+          this.setState({books: []})
         }
       })
+    } else if (query === ''){
+      this.setState({books: []})
     } else {
-      query= ''
       this.setState({books: []})
     }
   }

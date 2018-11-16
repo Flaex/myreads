@@ -6,6 +6,12 @@ class BookItem extends Component {
       books: []
     }
 
+    isThumbnail = (book) => {
+      const placeholder = 'https://via.placeholder.com/128x193'
+      const thumbnail = book.imageLinks === undefined ? placeholder : book.imageLinks.smallThumbnail
+      return thumbnail
+    }
+
     render() {
     const { books, shelf } = this.props
     if (shelf) {
@@ -20,7 +26,7 @@ class BookItem extends Component {
           <div className="book-top">
             <div className="book-cover" style={{
               width: 128, height: 193,
-              backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+              backgroundImage: `url(${this.isThumbnail(book)})`
             }}></div>
             <ShelfPicker
             onUpdateShelf={this.updateShelf}
