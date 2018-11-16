@@ -9,10 +9,6 @@ class SearchBooks extends Component {
     books: []
   }
 
-  clearResults = () => {
-    this.setState({ query: '' })
-  }
-
   updateQuery = (query) => {
      if (query) {
       BooksAPI.search(query).then(books => {
@@ -28,6 +24,10 @@ class SearchBooks extends Component {
     } else {
       this.setState({books: []})
     }
+  }
+
+  updateBookShelf(bookData) {
+    console.log(bookData)
   }
 
   render() {
@@ -50,6 +50,9 @@ class SearchBooks extends Component {
       </div>
         <div className="search-books-results">
           <BookItem
+            dataCarrier={(bookData) => {
+              this.updateBookShelf(bookData)
+            }}
             books={books}
             shelf="none"
            />

@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 
 class BookItem extends Component {
 
     updateShelf = (event) => {
       const shelf = event
-      const book = this.props.bookID
-      console.log(shelf, this.props.bookID)
-      BooksAPI.update(book, shelf)
+      const book = {id:''}
+      book.id = this.props.bookID
+      const bookData = [ shelf, book]
+      console.log(bookData)
+      if (this.props.onUpdateShelf) {
+        this.props.onUpdateShelf(bookData)
+      }
     }
 
-    render() {
-
+  render() {
     return(
       <ol className="books-grid">
         <div className="book-shelf-changer">

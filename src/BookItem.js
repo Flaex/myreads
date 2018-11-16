@@ -12,6 +12,10 @@ class BookItem extends Component {
       return thumbnail
     }
 
+    updateShelfInfo(bookData) {
+      this.props.dataCarrier(bookData)
+    }
+
     render() {
     const { books, shelf } = this.props
     if (shelf) {
@@ -29,7 +33,9 @@ class BookItem extends Component {
               backgroundImage: `url(${this.isThumbnail(book)})`
             }}></div>
             <ShelfPicker
-            onUpdateShelf={this.updateShelf}
+            onUpdateShelf={(bookData) => {
+                this.updateShelfInfo(bookData)
+            }}
             bookID={book.id} />
           </div>
           <div className="book-title">{book.title}</div>

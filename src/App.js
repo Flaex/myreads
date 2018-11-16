@@ -12,12 +12,24 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((Books) => {
-      this.setState({ Books })
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
+  updateShelf(bookData) {
+    const shelf = bookData[0]
+    const book = bookData[1]
+    BooksAPI.update(book, shelf).then(books => {
+      this.setState(state => ({
+        books: books
+      }))
     })
   }
 
   render() {
+    console.log(this.state.books)
+    const { books } = this.state
     return (
       <div className="app">
 
@@ -33,9 +45,9 @@ class BooksApp extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf shelf="Currently Reading" />
-                <BookShelf shelf="Want to Read" />
-                <BookShelf shelf="Read" />
+                <BookShelf books={books} shelf="Currently Reading" />
+                <BookShelf books={books} shelf="Want to Read" />
+                <BookShelf books={books} shelf="Read" />
               </div>
             </div>
             <div className="open-search">
