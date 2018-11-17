@@ -24,17 +24,15 @@ class BookItem extends Component {
 
   render() {
     return(
-      <ol className="books-grid">
-        <div className="book-shelf-changer">
-          <select onChange={(event) => this.updateShelf(event.target.value)}>
-            <option value="move" disabled>Move to:</option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
-            <option value="none">None</option>
-          </select>
-        </div>
-      </ol>
+      <div className="book-shelf-changer">
+        <select onChange={(event) => this.updateShelf(event.target.value)}>
+          <option selected="true" disabled="disabled">Move to:</option>
+          <option value="currentlyReading">Currently Reading</option>
+          <option value="wantToRead">Want to Read</option>
+          <option value="read">Read</option>
+          <option value="none">None</option>
+        </select>
+      </div>
     )
   }
 }

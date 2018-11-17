@@ -46,7 +46,7 @@ class SearchBooks extends Component {
       </div>
         <div className="search-books-results">
           <BookItem
-                        books={books}
+            books={books}
             shelf="none"
            />
         </div>
