@@ -8,28 +8,30 @@ import './App.css'
 class BooksApp extends Component {
 
   state = {
-    books:[]
+    books:[],
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
-  }
+  }  
 
-  updateShelf(bookData) {
-    const shelf = bookData[0]
-    const book = bookData[1]
-    BooksAPI.update(book, shelf).then(books => {
-      this.setState(state => ({
-        books: books
-      }))
-    })
-  }
+  // filterCurrent = (books) => {
+  //   this.setState({
+  //     booksC: books.filter((book) => book.shelf === 'currentlyReading').map(book => book),
+  //     booksW: books.filter((book) => book.shelf === 'wantToRead').map(book => book),
+  //     booksR: books.filter((book) => book.shelf === 'read').map(book => book)
+  //   })
+  // }
 
   render() {
     console.log(this.state.books)
     const { books } = this.state
+    let booksC = books.filter((book) => book.shelf === 'currentlyReading').map(book => book)
+    let booksW = books.filter((book) => book.shelf === 'wantToRead').map(book => book)
+    let booksR = books.filter((book) => book.shelf === 'read').map(book => book)
+
     return (
       <div className="app">
 
@@ -45,9 +47,15 @@ class BooksApp extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf books={books} shelf="Currently Reading" />
-                <BookShelf books={books} shelf="Want to Read" />
-                <BookShelf books={books} shelf="Read" />
+                <BookShelf
+                  books={booksC}
+                  shelf="Currently Reading"/>
+                <BookShelf
+                  books={booksW}
+                  shelf="Want to Read" />
+                <BookShelf
+                  books={booksR}
+                  shelf="Read" />
               </div>
             </div>
             <div className="open-search">

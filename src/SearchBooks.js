@@ -26,10 +26,6 @@ class SearchBooks extends Component {
     }
   }
 
-  updateBookShelf(bookData) {
-    console.log(bookData)
-  }
-
   render() {
     const { query, books } = this.state
     return(
@@ -50,10 +46,7 @@ class SearchBooks extends Component {
       </div>
         <div className="search-books-results">
           <BookItem
-            dataCarrier={(bookData) => {
-              this.updateBookShelf(bookData)
-            }}
-            books={books}
+                        books={books}
             shelf="none"
            />
         </div>
