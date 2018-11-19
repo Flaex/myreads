@@ -20,20 +20,21 @@ class BooksApp extends Component {
   updateShelf = (bookData) => {
     const shelf = bookData[0]
     const book = bookData[1]
-    console.log(bookData)
     BooksAPI.update(book, shelf).then(() => {
-        book.shelf = shelf;
+      book.shelf = shelf;
+      const noBook = this.state.books.filter((b) => b.id !== book.id)
+      if (noBook) {
         this.setState((state) => ({
-          books: state.books.concat([ book ])
+          noBook: state.books.concat([ book ])
         }))
-      })
-    console.log(book)
-
-
+      }
+      this.setState((state) => ({
+        books: state.books.concat([ book ])
+      }))
+    })
   }
 
   render() {
-    console.log(this.state.books)
     const { books } = this.state
     const booksC = books.filter((book) => book.shelf === 'currentlyReading').map(book => book)
     const booksW = books.filter((book) => book.shelf === 'wantToRead').map(book => book)
@@ -44,7 +45,7 @@ class BooksApp extends Component {
 
         <Route path='/search' render={() => (
           <SearchBooks
-            onUpdateShelfD={(bookData) => {
+            onUpdateShelf={(bookData) => {
                this.updateShelf(bookData)
             }}
           />

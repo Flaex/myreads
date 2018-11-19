@@ -9,7 +9,7 @@ class BookShelf extends Component {
     }
   }
 
-  render() {
+  render() {    
     return(
       <div className="bookshelf">
         <h2 className="bookshelf-title">{this.props.shelf}</h2>

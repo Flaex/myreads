@@ -6,29 +6,34 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
 
   state = {
-    books: []
+    booksFound: []
   }
 
   updateQuery = (query) => {
      if (query) {
-      BooksAPI.search(query).then(books => {
-        if (books.length) {
-          this.setState({books})
+      BooksAPI.search(query).then(booksFound => {
+        if (booksFound.length) {
+          this.setState({booksFound})
         } else {
           console.log('no books')
-          this.setState({books: []})
+          this.setState({booksFound: []})
         }
       })
     } else if (query === ''){
-      this.setState({books: []})
+      this.setState({booksFound: []})
     } else {
-      this.setState({books: []})
+      this.setState({booksFound: []})
     }
   }
 
+  updateShelf = (bookData) => {
+    if (this.props.onUpdateShelf) {
+      this.props.onUpdateShelf(bookData)
+    }
+  }
 
   render() {
-    const { query, books } = this.state
+    const { query, booksFound } = this.state
     return(
       <div className="search-books">
       <div className="search-books-bar">
@@ -47,7 +52,10 @@ class SearchBooks extends Component {
       </div>
         <div className="search-books-results">
           <BookItem
-            books={books}
+            onUpdateShelf={(bookData) => {
+               this.updateShelf(bookData)
+            }}
+            books={booksFound}
            />
         </div>
       </div>

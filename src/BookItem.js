@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import ShelfPicker from './ShelfPicker'
 
 class BookItem extends Component {
-    static defaultProps = {
-      books: []
-    }
+    
 
     isThumbnail = (book) => {
       const placeholder = 'https://via.placeholder.com/128x193'
@@ -19,7 +17,7 @@ class BookItem extends Component {
     }
 
     render() {
-    const { books } = this.props    
+    const { books } = this.props
     return(
       <ol className="books-grid">
       {books.map((book) => (
