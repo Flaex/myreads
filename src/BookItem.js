@@ -12,12 +12,14 @@ class BookItem extends Component {
       return thumbnail
     }
 
-    render() {
-    const { books, shelf } = this.props
-    if (shelf) {
-      books.map(book =>  book.shelf = shelf)
+    updateShelf = (bookData) => {
+      if (this.props.onUpdateShelf) {
+        this.props.onUpdateShelf(bookData)
+      }
     }
-    console.log(books)
+
+    render() {
+    const { books } = this.props    
     return(
       <ol className="books-grid">
       {books.map((book) => (
@@ -29,7 +31,10 @@ class BookItem extends Component {
               backgroundImage: `url(${this.isThumbnail(book)})`
             }}></div>
             <ShelfPicker
-            bookID={book.id} />
+              onUpdateShelf={(bookData) => {
+                 this.updateShelf(bookData)
+              }}
+              book={book} />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors}</div>

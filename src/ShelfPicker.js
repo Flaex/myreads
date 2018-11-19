@@ -1,32 +1,26 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 
-class BookItem extends Component {
+
+class ShelfPicker extends Component {
+
+  state = {
+    option: 'selected',
+  }
 
   updateShelf = (event) => {
     const shelf = event
-    const book = {id:''}
-    book.id = this.props.bookID
-    BooksAPI.update(book, shelf).then(books => {
-      this.setState(state => ({books}))
-    })
+    const book = this.props.book
+    const bookData = [ shelf, book]
+    if (this.props.onUpdateShelf) {
+      this.props.onUpdateShelf(bookData)
+    }
   }
-
-  // updateBooks(bookData) {
-  //   const shelf = bookData[0]
-  //   const book = bookData[1]
-  //   BooksAPI.update(book, shelf).then(books => {
-  //     this.setState(state => ({
-  //       books: books
-  //     }))
-  //   })
-  // }
 
   render() {
     return(
       <div className="book-shelf-changer">
         <select onChange={(event) => this.updateShelf(event.target.value)}>
-          <option selected="true" disabled="disabled">Move to:</option>
+          <option value={this.state.option} >Move to:</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
           <option value="read">Read</option>
@@ -37,4 +31,4 @@ class BookItem extends Component {
   }
 }
 
-export default BookItem
+export default ShelfPicker

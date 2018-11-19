@@ -26,6 +26,7 @@ class SearchBooks extends Component {
     }
   }
 
+
   render() {
     const { query, books } = this.state
     return(
@@ -47,7 +48,6 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <BookItem
             books={books}
-            shelf="none"
            />
         </div>
       </div>
