@@ -22,14 +22,14 @@ class BooksApp extends Component {
     const book = bookData[1]
     BooksAPI.update(book, shelf).then(() => {
       book.shelf = shelf;
-      const noBook = this.state.books.filter((b) => b.id !== book.id)
-      if (noBook) {
+      const noBook = this.state.books.filter((b) => b.id !== book.id).map(c => c)
+      if (noBook.length) {
         this.setState((state) => ({
           noBook: state.books.concat([ book ])
         }))
       }
       this.setState((state) => ({
-        books: state.books.concat([ book ])
+        noBook: state.books.concat([ book ])
       }))
     })
   }
