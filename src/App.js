@@ -9,6 +9,7 @@ class BooksApp extends Component {
 
   state = {
     books:[],
+    noBook: []
   }
 
   componentDidMount() {
@@ -22,15 +23,19 @@ class BooksApp extends Component {
     const book = bookData[1]
     BooksAPI.update(book, shelf).then(() => {
       book.shelf = shelf;
-      const noBook = this.state.books.filter((b) => b.id !== book.id).map(c => c)
-      if (noBook.length) {
+      // for moving an exsiting book to another shelf
+      const selectedBook = this.state.books.filter((b) => b.id === book.id).map(item => item.id)
+      const noBook = this.state.books.filter((b) => b.id !== book.id)
+      console.log(selectedBook[0] === book.id)
+      if (selectedBook[0] === book.id) {
         this.setState((state) => ({
           noBook: state.books.concat([ book ])
         }))
+      } else {
+        this.setState((state) => ({
+          books: state.books.concat([ book ])
+        }))
       }
-      this.setState((state) => ({
-        noBook: state.books.concat([ book ])
-      }))
     })
   }
 
