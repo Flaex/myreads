@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ShelfPicker from './ShelfPicker'
 
 class BookItem extends Component {
-    
+
 
     isThumbnail = (book) => {
       const placeholder = 'https://via.placeholder.com/128x193'
@@ -32,7 +32,8 @@ class BookItem extends Component {
               onUpdateShelf={(bookData) => {
                  this.updateShelf(bookData)
               }}
-              book={book} />
+              book={book}
+              books={books} />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors}</div>

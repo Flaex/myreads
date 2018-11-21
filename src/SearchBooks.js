@@ -6,23 +6,23 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
 
   state = {
-    booksFound: []
+    searchResults: []
   }
 
   updateQuery = (query) => {
      if (query) {
-      BooksAPI.search(query).then(booksFound => {
-        if (booksFound.length) {
-          this.setState({booksFound})
+      BooksAPI.search(query).then(searchResults => {
+        if (searchResults.length) {
+          this.setState({searchResults})
         } else {
           console.log('no books')
-          this.setState({booksFound: []})
+          this.setState({searchResults: []})
         }
       })
     } else if (query === ''){
-      this.setState({booksFound: []})
+      this.setState({searchResults: []})
     } else {
-      this.setState({booksFound: []})
+      this.setState({searchResults: []})
     }
   }
 
@@ -33,7 +33,7 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { query, booksFound } = this.state
+    const { query, searchResults } = this.state
     return(
       <div className="search-books">
       <div className="search-books-bar">
@@ -55,7 +55,7 @@ class SearchBooks extends Component {
             onUpdateShelf={(bookData) => {
                this.updateShelf(bookData)
             }}
-            books={booksFound}
+            books={searchResults}
            />
         </div>
       </div>
