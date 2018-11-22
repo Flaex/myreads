@@ -34,6 +34,14 @@ class SearchBooks extends Component {
 
   render() {
     const { query, searchResults } = this.state
+    const { onShelves } = this.props
+    const onShelvesID = onShelves.map(b => b.id)
+    const searchResultsID = searchResults.map(b => b.id)
+    console.log(onShelvesID, searchResultsID)
+
+
+
+
     return(
       <div className="search-books">
       <div className="search-books-bar">

@@ -24,7 +24,7 @@ class ShelfPicker extends Component {
     return(
       <div className="book-shelf-changer">
         <select onChange={(event) => this.updateShelf(event.target.value)}>
-          <option value={this.state.option} >Move to:</option>
+          <option >Move to:</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
           <option value="read">Read</option>

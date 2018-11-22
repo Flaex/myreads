@@ -50,6 +50,7 @@ class BooksApp extends Component {
 
         <Route path='/search' render={() => (
           <SearchBooks
+            onShelves={books}
             onUpdateShelf={(bookData) => {
                this.updateShelf(bookData)
             }}
