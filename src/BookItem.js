@@ -32,7 +32,7 @@ class BookItem extends Component {
                  this.updateShelf(bookData)
               }}
               book={book}
-              books={books} />
+            />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors}</div>
