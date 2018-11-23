@@ -3,7 +3,6 @@ import ShelfPicker from './ShelfPicker'
 
 class BookItem extends Component {
 
-
     isThumbnail = (book) => {
       const placeholder = 'https://via.placeholder.com/128x193'
       const thumbnail = book.imageLinks === undefined ? placeholder : book.imageLinks.smallThumbnail

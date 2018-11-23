@@ -23,12 +23,13 @@ class BooksApp extends Component {
     const book = bookData[1]
     BooksAPI.update(book, shelf).then(() => {
       book.shelf = shelf;
-      const selectedBook = this.state.books.filter((b) => b.id === book.id).map(item => item.id)
+      const selectedBook = this.state.books.filter((b) => b.id === book.id).map(c => c.id)
       console.log(selectedBook[0] === book.id)
       // moving an existing book to another shelf
       if (selectedBook[0] === book.id) {
         this.setState((state) => ({
-          noBook: state.books.concat([ book ])
+          noBook: state.books.concat([ book ]),
+          
         }))
         // add a new book to a shelf
       } else {
@@ -37,6 +38,7 @@ class BooksApp extends Component {
         }))
       }
     })
+    console.log(this.state.books)
   }
 
   render() {

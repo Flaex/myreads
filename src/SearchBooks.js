@@ -6,7 +6,7 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
 
   state = {
-    searchResults: []
+    searchResults: [],
   }
 
   updateQuery = (query) => {
@@ -14,6 +14,24 @@ class SearchBooks extends Component {
       BooksAPI.search(query).then(searchResults => {
         if (searchResults.length) {
           this.setState({searchResults})
+          const { onShelves } = this.props
+          const globalBooks= onShelves.map(b => b)
+          const searchBooks = searchResults.map(b => b)
+          for (const itemA of globalBooks ) {
+            for (const itemB of searchBooks  ) {
+              if (itemB.id === itemA.id) {
+                itemB.shelf = itemA.shelf
+                console.log(itemB)
+                this.setState((state) => ({
+                  searchResults
+                }))
+              } else {
+                this.setState((state) => ({
+                  searchResults
+                }))
+              }
+            }
+          }
         } else {
           console.log('no books')
           this.setState({searchResults: []})
@@ -34,13 +52,6 @@ class SearchBooks extends Component {
 
   render() {
     const { query, searchResults } = this.state
-    const { onShelves } = this.props
-    const onShelvesID = onShelves.map(b => b.id)
-    const searchResultsID = searchResults.map(b => b.id)
-    console.log(onShelvesID, searchResultsID)
-
-
-
 
     return(
       <div className="search-books">

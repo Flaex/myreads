@@ -17,10 +17,8 @@ class ShelfPicker extends Component {
   }
 
   render() {
-    const { books, book } = this.props
-    if (book.shelf === undefined) {
-      books.map(b =>  b.shelf = 'none')
-    }
+    const { books } = this.props
+
     return(
       <div className="book-shelf-changer">
         <select onChange={(event) => this.updateShelf(event.target.value)}>
