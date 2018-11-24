@@ -6,7 +6,7 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
 
   state = {
-    searchResults: [],
+    searchResults: []
   }
 
   updateQuery = (query) => {
@@ -25,10 +25,8 @@ class SearchBooks extends Component {
                 this.setState((state) => ({
                   searchResults
                 }))
-              } else {
-                this.setState((state) => ({
-                  searchResults
-                }))
+              } else if (itemB.shelf === undefined) {
+                itemB.shelf='none'
               }
             }
           }

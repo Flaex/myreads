@@ -28,8 +28,7 @@ class BooksApp extends Component {
       // moving an existing book to another shelf
       if (selectedBook[0] === book.id) {
         this.setState((state) => ({
-          noBook: state.books.concat([ book ]),
-          
+          noBook: state.books.concat([ book ])
         }))
         // add a new book to a shelf
       } else {
