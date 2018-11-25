@@ -2,7 +2,7 @@
 
 This is my version for Myreads project for Udacity Front-end nanodegree program. The objective is to build an application that connects to an API to search, fetch and set books on 3 different shelves.
 
-## Backend Server
+# Backend Server
 The original starter template includes a backend server which provides the API. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods needed to perform necessary operations on the backend
 * [`getAll`]
 * [`update`]
