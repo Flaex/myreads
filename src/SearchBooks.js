@@ -14,19 +14,21 @@ class SearchBooks extends Component {
       BooksAPI.search(query).then(searchResults => {
         if (searchResults.length) {
           this.setState({searchResults})
-          const { onShelves } = this.props
-          const globalBooks= onShelves.map(b => b)
+          const { books } = this.props
+          const globalBooks= books.map(b => b)
           const searchBooks = searchResults.map(b => b)
           for (const itemA of globalBooks ) {
             for (const itemB of searchBooks  ) {
               if (itemB.id === itemA.id) {
                 itemB.shelf = itemA.shelf
-                console.log(itemB)
                 this.setState((state) => ({
                   searchResults
                 }))
-              } else if (itemB.shelf === undefined) {
+              } else if (itemB.shelf === undefined) {                
                 itemB.shelf='none'
+                this.setState((state) => ({
+                  searchResults
+                }))
               }
             }
           }

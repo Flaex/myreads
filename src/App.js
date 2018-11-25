@@ -6,9 +6,11 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends Component {
-
-  state = {
-    books:[]
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: []
+    };
   }
 
   componentDidMount() {
@@ -18,25 +20,19 @@ class BooksApp extends Component {
   }
 
   updateShelf = (bookData) => {
-    const shelf = bookData[0]
-    const book = bookData[1]
+    const [shelf, book] = bookData;
+    const { books } = this.state
     BooksAPI.update(book, shelf).then(() => {
-      for (const item of this.state.books) {
-        if (book.id === item.id) {
-          console.log('It is the same book')
-          item.shelf = bookData[0]
-          console.log(item)
-          this.setState((state) => ({
-            books: state.books
-          }))
-        } else {
-          this.setState((state) => ({
-            books: state.books
-          }))
-        }
+      book.shelf = shelf
+      const bookIndex = books.indexOf(book);
+      if (bookIndex === -1) {
+        this.setState({books: books.concat([ book ])})
+      } else {
+        this.setState((state, book) => ({
+          books: state.books.concat([ book ])
+        }))
       }
     })
-    console.log(this.state.books)
   }
 
   render() {
@@ -50,7 +46,7 @@ class BooksApp extends Component {
 
         <Route path='/search' render={() => (
           <SearchBooks
-            onShelves={books}
+            books={books}
             onUpdateShelf={(bookData) => {
                this.updateShelf(bookData)
             }}
